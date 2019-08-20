@@ -34,6 +34,14 @@
         )
       }
 
+      const Nav = ({companies}) => {
+        return (
+          <div>
+          <Link to='/' >Home</Link>
+          <Link to='/companies'>Companies</Link>
+          </div>
+        )
+      }
 
       class App extends Component{
         constructor(){
@@ -51,11 +59,12 @@
           const { companies } = this.state;
           return (
           <HashRouter>
-
+            <Route render={()=> <Nav companies={companies} />}/>
             <Switch>
-              <Route path='/' component={Home}/>
               <Route path='/companies' render={ ()=> <Companies companies={ companies } />}/>
-              <Redirect to='/'/>
+                <Route path='/' component={Home}/>
+
+              <Redirect to='/companies'/>
             </Switch>
           </HashRouter>
           )
